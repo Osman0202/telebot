@@ -2,7 +2,7 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.utils import executor
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from decouple import config
-import logging
+
 
 TOKEN = config("TOKEN")
 
@@ -88,5 +88,4 @@ async def echo(message: types.Message):
 
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.INFO)
     executor.start_polling(dp, skip_updates=True)
