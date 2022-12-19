@@ -29,5 +29,6 @@ async def echo(message: types.Message):
             await bot.pin_chat_message(message.chat.id, message.message_id)
 
 
+
 def register_handler_extra(dp: Dispatcher):
     dp.register_message_handler(echo)
