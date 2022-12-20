@@ -56,20 +56,19 @@ async def load_gender(message: types.Message, state: FSMContext):
         async with state.proxy() as data:
             data['gender'] = message.text
         await FSMAdmin.next()
-        await message.answer("Откуда будишь??", reply_markup=client_kb.cancel_markup)
+        await message.answer("Какое направление??", reply_markup=client_kb.direct_markup)
 
 
 async def load_direct(message: types.Message, state: FSMContext):
-    async with state.proxy() as data:
-        if message.text not in ["Backend", "Android", "UX/UI", "Apple", "Frontend"]:
-            await  message.answer("Выберите из списка!!")
-        else:
-            async with state.proxy() as data:
-                data['direction'] = message.text
-    await FSMAdmin.next()
-    await message.answer("Группа?",
-                         "Пример:24_1")
-reply_markup=client_kb.cancel_markup
+    if message.text not in ["Backend", "Android", "UX/UI", "Apple", "Frontend"]:
+        await  message.answer("Выберите из списка!!")
+    else:
+        async with state.proxy() as data:
+            data['direction'] = message.text
+        await FSMAdmin.next()
+        await message.answer("Группа?"
+                         "Пример:241", reply_markup=client_kb.cancel_markup)
+
 
 async def load_group(message: types.Message, state: FSMContext):
     if not message.text.isdigit():
@@ -77,8 +76,8 @@ async def load_group(message: types.Message, state: FSMContext):
     else:
         async with state.proxy() as data:
             data['group']=message.text
-    await FSMAdmin.next()
-    await message.answer("Скинь фотку?)")
+        await FSMAdmin.next()
+        await message.answer("Скинь фотку?)")
 
 
 async def load_photo(message: types.Message, state: FSMContext):
@@ -86,7 +85,7 @@ async def load_photo(message: types.Message, state: FSMContext):
         data['photo'] = message.photo[0].file_id
         await message.answer_photo(data['photo'],
                                    caption=f"{data['name']} {data['age']} {data['gender']} "
-                                           f"{data['region']}\n{data['username']}")
+                                           f"{data['direction']} {data['group']}\n{data['username']}")
     await FSMAdmin.next()
     await message.answer("Все верно?", reply_markup=client_kb.submit_markup)
 
