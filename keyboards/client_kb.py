@@ -26,6 +26,14 @@ gender_m = KeyboardButton("Мужчина")
 gender_f = KeyboardButton("Женщина")
 gender_u = KeyboardButton("Незнаю")
 
+d_backend=KeyboardButton("Backend")
+d_android=KeyboardButton("Android")
+d_uxui=KeyboardButton("UX/UI")
+d_apple=KeyboardButton("Apple")
+d_frontend=KeyboardButton("Frontend")
+
+direct_markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True).add(d_backend, d_android, d_uxui, d_apple, d_frontend)
+
 gender_markup = ReplyKeyboardMarkup(
     resize_keyboard=True,
     one_time_keyboard=True
