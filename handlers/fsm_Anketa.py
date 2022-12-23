@@ -4,6 +4,7 @@ from aiogram.dispatcher.filters import Text
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from config import ADMINS
 from keyboards import client_kb
+from database.bot_db import sql_command_insert
 import uuid
 
 
@@ -92,7 +93,7 @@ async def load_photo(message: types.Message, state: FSMContext):
 
 async def submit(message: types.Message, state: FSMContext):
     if message.text.lower() == "да":
-        # Запись в БД
+        await sql_command_insert(state)
         await state.finish()
         await message.answer("Ты зареган")
     elif message.text.lower() == "нет":
