@@ -26,9 +26,9 @@ async def delete_data(message: types.Message):
         users = await sql_command_all()
         for user in users:
             await message.answer_photo(
-                user[6],
-                caption=f"{user[2]} {user[3]} {user[4]} "
-                        f"{user[5]}\n{user[1]}",
+                user[7],
+                caption=f"{user[2]} {user[3]} {user[4]} {user[5]} "
+                        f"{user[6]}\n{user[1]}",
                 reply_markup=InlineKeyboardMarkup().add(
                     InlineKeyboardButton(f"delete {user[2]}",
                                          callback_data=f"delete {user[0]}")

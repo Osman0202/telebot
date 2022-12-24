@@ -15,15 +15,15 @@ class FSMAdmin(StatesGroup):
     age = State()
     gender = State()
     direction = State()
-    group = State()
+    grup = State()
     photo = State()
     submit = State()
 
 
 async def fsm_start(message: types.Message):
-    if message.from_user.id not in ADMINS:
-        await message.answer('Ты не мой босс')
-    elif message.chat.type == 'private':
+    # if message.from_user.id not in ADMINS:
+    #     await message.answer('Ты не мой босс')
+    if message.chat.type == 'private':
         await FSMAdmin.name.set()
         await message.answer("Как звать?", reply_markup=client_kb.cancel_markup)
     else:
@@ -71,12 +71,12 @@ async def load_direct(message: types.Message, state: FSMContext):
                          "Пример:241", reply_markup=client_kb.cancel_markup)
 
 
-async def load_group(message: types.Message, state: FSMContext):
+async def load_grup(message: types.Message, state: FSMContext):
     if not message.text.isdigit():
         await message.answer("ЧИСЛАААА!!!!!")
     else:
         async with state.proxy() as data:
-            data['group']=message.text
+            data['grup']=message.text
         await FSMAdmin.next()
         await message.answer("Скинь фотку?)")
 
@@ -86,7 +86,7 @@ async def load_photo(message: types.Message, state: FSMContext):
         data['photo'] = message.photo[0].file_id
         await message.answer_photo(data['photo'],
                                    caption=f"{data['name']} {data['age']} {data['gender']} "
-                                           f"{data['direction']} {data['group']}\n{data['username']}")
+                                           f"{data['direction']} {data['grup']}\n{data['username']}")
     await FSMAdmin.next()
     await message.answer("Все верно?", reply_markup=client_kb.submit_markup)
 
@@ -119,6 +119,6 @@ def register_handlers_fsm_anketa(dp: Dispatcher):
     dp.register_message_handler(load_age, state=FSMAdmin.age)
     dp.register_message_handler(load_gender, state=FSMAdmin.gender)
     dp.register_message_handler(load_direct, state=FSMAdmin.direction)
-    dp.register_message_handler(load_group, state=FSMAdmin.group)
+    dp.register_message_handler(load_grup, state=FSMAdmin.grup)
     dp.register_message_handler(load_photo, state=FSMAdmin.photo, content_types=['photo'])
     dp.register_message_handler(submit, state=FSMAdmin.submit)

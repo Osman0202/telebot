@@ -10,10 +10,11 @@ def sql_create():
     if db:
         print("База данных подключена!")
 
+
     db.execute("CREATE TABLE IF NOT EXISTS geek "
                "(id INTEGER PRIMARY KEY, username TEXT, "
                "name TEXT, age INTEGER, gender TEXT, "
-               "direct TEXT, group TEXT, photo TEXT)")
+               "direct TEXT,grup INTEGER, photo TEXT )")
     db.commit()
 
 
@@ -29,8 +30,8 @@ async def sql_command_random(message):
     random_user = random.choice(result)
     await message.answer_photo(
         random_user[7],
-        caption=f"{random_user[6]} {random_user[5]} {random_user[4]} "
-                f"{random_user[3]}\n{random_user[2]} {random_user[1]}"
+        caption=f"{random_user[6]} {random_user[5]} {random_user[4]} {random_user[3]}"
+                f"{random_user[2]}\n{random_user[1]}"
     )
 
 
