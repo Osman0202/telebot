@@ -9,6 +9,7 @@ async def get_chat_id(message:types.Message):
     await message.answer("OK")
 
 
+
 async def go_to_scholl():
     await bot.send_message(chat_id=chat_id, text="Иди на учебу!")
 
