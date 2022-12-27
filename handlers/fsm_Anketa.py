@@ -8,8 +8,8 @@ from database.bot_db import sql_command_insert
 import uuid
 
 
-print(uuid.uuid1())
-gen_id=uuid.uuid1()
+# print(uuid.uuid1())
+# gen_id=uuid.uuid1()
 class FSMAdmin(StatesGroup):
     name = State()
     age = State()
@@ -31,7 +31,7 @@ async def fsm_start(message: types.Message):
 
 async def load_name(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
-        data['id'] = gen_id
+        data['id'] = message.from_user.id
         data['username'] = f"@{message.from_user.username}"
         data['name'] = message.text
     await FSMAdmin.next()

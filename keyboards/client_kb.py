@@ -9,12 +9,14 @@ start_markup = ReplyKeyboardMarkup(
 start_button = KeyboardButton('/start')
 info_button = KeyboardButton('/info')
 quiz_button = KeyboardButton('/quiz')
+reg_button = KeyboardButton('/reg')
+meme_button = KeyboardButton('/meme')
 
 share_location = KeyboardButton ('location', request_location=True)
 share_contact = KeyboardButton ('contact_location', request_contact=True)
 
 
-start_markup.add(start_button, info_button, quiz_button, share_location, share_contact)
+start_markup.add(start_button, info_button, quiz_button, share_location, share_contact, reg_button, meme_button)
 
 cancel_button = KeyboardButton('CANCEL')
 cancel_markup = ReplyKeyboardMarkup(
