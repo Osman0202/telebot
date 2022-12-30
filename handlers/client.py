@@ -48,7 +48,7 @@ async def get_random_user(message:types.Message):
 
 
 
-async def get_anime(message: types.Message):
+async def get_manga(message: types.Message):
     manga = parser()
     for i in manga:
         await message.answer(
@@ -63,4 +63,4 @@ def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(info_hendler, commands=['info'])
     dp.register_message_handler(meme_1, commands=['meme'])
     dp.register_message_handler(get_random_user, commands=['get'])
-    dp.register_message_handler(get_anime, commands=['manga'])
+    dp.register_message_handler(get_manga, commands=['manga'])

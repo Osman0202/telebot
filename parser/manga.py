@@ -19,8 +19,8 @@ def get_data(html):
     for item in items:
         info = item.find('div', class_='jsx-14222a50a34f969e').find('div').string.split(', ')
         card = {
-            'title': item.find('div', class_='jsx-14222a50a34f969e').find('a').string,
-            'link': item.find('div', class_='jsx-14222a50a34f969e').find('a').get('href')
+            'title': item.find('div', class_='Vertical_card__Sxft_').find('a').string,
+            'link': item.find('div', class_='Vertical_card__Sxft_').find('a').get('href')
         }
         manga.append(card)
     return manga
@@ -30,12 +30,12 @@ def get_data(html):
 def parser():
     html = get_html(URL)
     if html.status_code == 200:
-        anime = []
+        manga = []
         for i in range(1, 2):
             html = get_html(f"{URL}page/{i}/")
             current_page = get_data(html.text)
-            anime.extend(current_page)
-        return anime
+            manga.extend(current_page)
+        return manga
     else:
         raise Exception("Bad request!")
 
