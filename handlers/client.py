@@ -3,7 +3,7 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from config import bot, dp
 from keyboards.client_kb import start_markup
 from database.bot_db import sql_command_random
-from parser.manga import parser
+from parser.manga import ParserManga
 
 
 async def start_handler(message: types.Message):
@@ -49,7 +49,7 @@ async def get_random_user(message:types.Message):
 
 
 async def get_manga(message: types.Message):
-    manga = parser()
+    manga = ParserManga.parser()
     for i in manga:
         await message.answer(
             f"{i['link']}\n"
