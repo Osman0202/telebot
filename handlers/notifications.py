@@ -15,7 +15,7 @@ async def go_to_scholl():
 
 
 async def scheduler():
-    aioschedule.every().tuesday.at("17:30").do(go_to_scholl)
+    aioschedule.every().friday.at("17:30").do(go_to_scholl)
 
     while True:
         await aioschedule.run_pending()

@@ -17,8 +17,6 @@ class ParserManga:
         else:
             req = requests.get(url=cls.__URL, headers=cls.__HEADERS)
         return req
-
-
     @staticmethod
     def __get_data(html):
         soup = BeautifulSoup(html, 'html.parser')
